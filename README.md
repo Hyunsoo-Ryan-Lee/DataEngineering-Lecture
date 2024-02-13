@@ -25,7 +25,7 @@
   - 과제 안내
 
 ### DAY 5 - Cloud 에서의 데이터 엔지니어링
-  - Pyspark를 통한 DB Connection
+  - Spark SQL 실습
   - Spark ML 실습
   - AWS 서비스를 이용한 데이터 처리
   - AWS 서비스 & 관련 자격증 소개
