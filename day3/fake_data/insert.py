@@ -20,4 +20,4 @@ def insert_data():
         sql = f"INSERT INTO fake_user2 VALUES %s;"
         execute_values(cursor, sql, insert_list)
             
-        connected.conn.commit()
+        connected.conn.commit() 
