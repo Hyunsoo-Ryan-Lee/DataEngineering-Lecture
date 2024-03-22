@@ -1,12 +1,10 @@
 from datetime import datetime, timedelta, timezone
 import click, time
 from pipeline import controller
-
 from fake_data.insert import insert_data
 
 @click.command
 @click.option('-d', '--custom-batch-date', type=click.STRING, default='', help='배치작업연월일')
-
 def start_batch(custom_batch_date):
     
     for _ in range(10):

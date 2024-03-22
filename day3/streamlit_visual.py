@@ -1,14 +1,16 @@
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
 import pandas as pd
 
 from db.connector import DBconnector
 from settings import DB_SETTINGS
 
+st_autorefresh(interval=1000, key="dataframerefresh")
 ## MYSQL DB에서 DataMart 데이터 읽기
 db_connector = DBconnector(**DB_SETTINGS['MYSQL'])
 with db_connector as connected:
     
-    df = pd.read_sql("SELECT * FROM fake_datamart;", connected.conn)
+    df = pd.read_sql("SELECT * FROM mysql_fake;", connected.conn)
 
 ## 차트에 사용할 데이터 생성
 df_sex = df.groupby('sex').size().reset_index(name='count')

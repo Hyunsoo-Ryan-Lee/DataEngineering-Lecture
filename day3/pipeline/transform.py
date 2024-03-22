@@ -1,37 +1,43 @@
 import os
-from settings import TEMP_PATH
+from fake_user.process import transform_data
 
-def transformer(batch_date, df, table_name):
-    
-    print("TRANSFORMER")
-    
-    _path = create_path(batch_date, table_name)
-    
-    res = save_to_file(df, _path, table_name)
-    
-    return res   
+def transformer(temp_path, batch_date, pandas_df, table_name):
+    print("TRANSFORMER START")
 
+    fake_datamart_df = transform_data(pandas_df)
 
-def create_path(batch_date, table_name):
+    path = create_path(temp_path, batch_date, table_name)
+    response = save_to_file(fake_datamart_df, path, table_name)
+    # True / False
     
-    _y = batch_date[:4]
-    _m = batch_date[4:6]
-    _d = batch_date[6:]
-    
-    final_path = os.path.join(TEMP_PATH, table_name, f'yyyy={_y}', f'mm={_m}', f'dd={_d}')
-    
-    return final_path
+    return response, fake_datamart_df
 
-
-def save_to_file(df, save_path, table_name):
+def create_path(temp_path, batch_date, table_name):
     
-    if len(df) > 0:
-        os.makedirs(save_path, mode=777)
-        file_path = os.path.join(save_path, f'{table_name}.csv')
+    _year = batch_date[:4]
+    _month = batch_date[4:6]
+    _day = batch_date[6:]
+
+    _path = os.path.join(
+        temp_path,
+        "database",
+        table_name,
+        f"yyyy={_year}",
+        f"mm={_month}",
+        f"dd={_day}" 
+        )
+
+    return _path
+
+def save_to_file(pandas_df, path, table_name):
+
+    if len(pandas_df) > 0:
+    # pandas_df가 저장될 경로 생성
+        os.makedirs(path, exist_ok=True)
         
-        df.to_csv(file_path, index=False)
-        # df.to_parquet(file_path, engine = 'pyarrow', compression = 'gzip', index=False)
+        save_path = os.path.join(path, f"{table_name}.csv")
+        pandas_df.to_csv(save_path, index=False)
         return True
     else:
-        print("file is empty.")
+        print("EMPTY DATAFRAME")
         return False

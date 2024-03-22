@@ -1,7 +1,9 @@
-from settings import TEMP_PATH
-import shutil, os
+import shutil,os
 
-def remover(path):
+def remover(temp_path):
+    print("REMOVER START")
+    ## temporary storage 삭제
+    shutil.rmtree(temp_path)
 
-    shutil.rmtree(path)
-    os.makedirs(path)
+    ## temporary storage 빈 디렉토리 생성
+    os.makedirs(temp_path)

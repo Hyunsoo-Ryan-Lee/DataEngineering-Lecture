@@ -1,5 +1,5 @@
 import psycopg2, pymysql
-from db import postgresql_query, mysql_query
+from db import postgresql_query
 from sqlalchemy import create_engine
 
 class DBconnector:
@@ -30,7 +30,7 @@ class DBconnector:
         
         elif self.engine == 'mysql':
             self.connect = self.mysql_connect()
-            self.queries = mysql_query.queries
+            # self.queries = mysql_query.queries
 
     def __enter__(self):
         print("접속")

@@ -1,18 +1,13 @@
 import pandas as pd
 
-
-def extractor(db_connector, table_name, batch_date=None):
-    
-    print("EXTRACTOR")
-    
+def extractor(db_connector, table_name, batch_date):
+    print("EXTRACTOR START")
     with db_connector as connected:
-    
-        _query = connected.get_query(table_name = table_name, batch_date = batch_date)
-        
+        con = connected.conn
+        _query = connected.get_query(table_name, batch_date)
         try:
-            df = pd.read_sql(_query, connected.conn)
+            pandas_df = pd.read_sql(_query, con)
+            return pandas_df
+        except:
+            return False
             
-        except Exception as e:
-            print(e)
-        
-    return df

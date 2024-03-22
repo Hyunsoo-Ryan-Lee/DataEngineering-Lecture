@@ -11,7 +11,7 @@ DB_SETTINGS = {
         'engine': 'postgresql',
         'orm_engine': 'postgresql',
         'host' : os.environ.get('POSTGRES_HOST'),
-        'db_name' : os.environ.get('POSTGRES_DB_NAME1'),
+        'database' : os.environ.get('POSTGRES_DB_1'),
         'user' : os.environ.get('POSTGRES_USER'),
         'password' : os.environ.get('POSTGRES_PASSWORD'),
         'port' : os.environ.get('POSTGRES_PORT')
@@ -20,7 +20,7 @@ DB_SETTINGS = {
         'engine': 'postgresql',
         'orm_engine': 'postgresql',
         'host' : os.environ.get('POSTGRES_HOST'),
-        'db_name' : os.environ.get('POSTGRES_DB_NAME2'),
+        'database' : os.environ.get('POSTGRES_DB_2'),
         'user' : os.environ.get('POSTGRES_USER'),
         'password' : os.environ.get('POSTGRES_PASSWORD'),
         'port' : os.environ.get('POSTGRES_PORT')

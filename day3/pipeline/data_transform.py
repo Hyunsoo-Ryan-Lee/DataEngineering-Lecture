@@ -2,21 +2,21 @@ import os
 import pandas as pd
 from settings import TEMP_PATH
 
-def transformer(batch_date, table_name, pandas_df):
+def transformer(batch_date, pandas_df, table_name):
     
     df = transform_data(pandas_df)
     
-    _path = create_path(batch_date, table_name)
+    # _path = create_path(batch_date, table_name)
     
-    res = save_to_file(df, _path, table_name)
+    # res = save_to_file(df, _path, table_name)
     
-    return res, df
+    return df
 
 def transform_data(pandas_df):
     current_year = 2024
     
     # 도시 컬럼 생성
-    pandas_df['city'] = pandas_df['residenct'].str.split().str[0]
+    pandas_df['city'] = pandas_df['residence'].str.split().str[0]
     
     # 혈액형 컬럼 생성
     pandas_df['blood'] = pandas_df['blood_group'].str.slice(0, -1)
@@ -41,8 +41,11 @@ def categorize_age(age):
     if 0 <= age < 10:
         return '0대'
     else:
-        age_group = (age) // 10 * 10  # Calculate the age group
-        return f'{age_group}대'
+        if age >= 100:
+            return "90대 이상"
+        else:
+            age_group = (age) // 10 * 10
+            return f'{age_group}대'
 
 def create_path(batch_date, table_name):
     
