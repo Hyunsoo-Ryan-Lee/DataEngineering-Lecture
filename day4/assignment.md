@@ -47,7 +47,7 @@
 
 6. 등록일(reg_date)이 2023.03.15일인 유료회원들이 가장 많이 착용한 아이템(codename) TOP3를 뽑아주세요 (8)
 
-7. member 테이블의 grade 컬럼에서 숫자만 뽑아 grade라는 컬럼을 재구성해주세요. (초3학년 -> 3) (8)  (UDF, slicing 사용 X)
+7. member 테이블의 grade 컬럼에서 숫자만 뽑아 grade라는 컬럼을 재구성해주세요. (초3학년 -> 3) (8)  (UDF, slicing 사용 X)   ->> 다른 문제로 다시 내야할 것 같다.
 
 8.  study_his 월별로 pointnm 컬럼에 대한 point 발생 수(count)를 오름차순으로 순번 매겨주세요 (10)
 
